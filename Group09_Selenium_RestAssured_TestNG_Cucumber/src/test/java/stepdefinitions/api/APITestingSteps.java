@@ -1,16 +1,15 @@
-package stepdefinitions;
+package stepdefinitions.api;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import utils.Config;
 import utils.JsonUtils;
 
 import java.io.IOException;
 
-public class Steps {
+public class APITestingSteps {
     private Response response;
 
     @When("I create a book using data from {string}")

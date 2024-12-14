@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package runners;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
@@ -6,13 +11,15 @@ import org.testng.annotations.BeforeClass;
 import utils.Config;
 
 @CucumberOptions(
-        features = "src/test/resources/features",
-        glue = "stepdefinitions"
+        features = {"src/test/resources/features"},
+        glue = {"stepdefinitions"}
 )
 public class TestRunner extends AbstractTestNGCucumberTests {
-    @BeforeClass
-    public void setUp() {
-        Config.configureRestAssured();
-    }
-}
+        public TestRunner() {
+        }
 
+        @BeforeClass
+        public void setUp() {
+                Config.configureRestAssured();
+        }
+}
