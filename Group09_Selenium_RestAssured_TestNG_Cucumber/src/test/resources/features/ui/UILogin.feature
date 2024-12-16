@@ -1,6 +1,9 @@
-# Created by pavit at 12/14/2024
-Feature: # Enter feature name here
-  # Enter feature description here
+@ui
+Feature: Login to IceHRM
 
-  Scenario: # Enter scenario name here
-    # Enter steps here
+  Scenario: Successful login with valid credentials
+    Given I open the IceHRM application
+    When I enter "admin" as username
+    And I enter "admin" as password
+    And I click the login button
+    Then I should see the dashboard with title "IceHrm"
