@@ -6,15 +6,18 @@ import io.cucumber.java.en.*;
 import pages.Dashboard;
 import pages.HomePage;
 
-public class UIApplicationLogin {
+import utils.WebDriverConfig;
 
+import java.io.IOException;
+
+public class UIApplicationLogin {
     WebDriver driver;
     HomePage homePage;
     Dashboard dashboard;
 
     @Given("I open the IceHRM application")
-    public void i_open_the_ice_hrm_application() {
-        driver = new ChromeDriver(); // Replace with WebDriver setup
+    public void i_open_the_ice_hrm_application() throws IOException {
+        driver = WebDriverConfig.initializeDriver(); // Use WebDriverConfig
         homePage = new HomePage(driver);
         homePage.openApplication();
     }
