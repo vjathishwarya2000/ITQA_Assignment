@@ -12,8 +12,8 @@ import utils.Config;
 
 @CucumberOptions(
         features = {"src/test/resources/features"},
-        glue = {"stepdefinitions"}
-        //tags = "@ui"
+        glue = {"stepdefinitions"},
+        tags = "@ui"
 )
 public class TestRunner extends AbstractTestNGCucumberTests {
         public TestRunner() {
