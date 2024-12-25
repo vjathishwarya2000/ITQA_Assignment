@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 package runners;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
@@ -12,9 +7,13 @@ import utils.Config;
 
 @CucumberOptions(
         features = {"src/test/resources/features"},
-        glue = {"stepdefinitions"}
-        //tags = "@ui"
+        glue = {"stepdefinitions"},
+        tags = "@ui",
+        plugin = {
+                "html:target/cucumber-reports/report.html", // HTML report
+        }
 )
+
 public class TestRunner extends AbstractTestNGCucumberTests {
         public TestRunner() {
         }
