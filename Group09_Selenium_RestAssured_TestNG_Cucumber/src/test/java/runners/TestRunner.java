@@ -10,7 +10,8 @@ import utils.APIConfig;
         glue = {"stepdefinitions"},
         tags = "@api",
         plugin = {
-                "html:target/cucumber-reports/report.html", // HTML report
+                "pretty", // For console output
+                "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm", // Allure plugin
         }
 )
 
