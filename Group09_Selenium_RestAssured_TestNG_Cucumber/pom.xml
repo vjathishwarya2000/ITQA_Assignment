@@ -98,12 +98,6 @@
                 <version>2.15.2</version>
                 <executions>
                     <execution>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>serve</goal>
-                        </goals>
-                    </execution>
-                    <execution>
                         <id>generate-allure-report</id>
                         <phase>verify</phase>
                         <goals>
