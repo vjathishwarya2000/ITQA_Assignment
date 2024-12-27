@@ -1,0 +1,17 @@
+# Ignore IntelliJ IDEA settings at all levels
+.idea/
+**/.idea/
+
+# Ignore Maven target directories at all levels
+target/
+**/target/
+
+# Ignore IntelliJ project files
+*.iml
+
+# Ignore logs
+*.log
+
+# Ignore DS_Store files
+.DS_Store
+
