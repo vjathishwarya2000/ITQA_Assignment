@@ -8,7 +8,7 @@ import utils.APIConfig;
 @CucumberOptions(
         features = {"src/test/resources/features"},
         glue = {"stepdefinitions"},
-        tags = "@api2",
+        tags = "@api3",
         plugin = {
                 "pretty", // For console output
                 "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm", // Allure plugin
