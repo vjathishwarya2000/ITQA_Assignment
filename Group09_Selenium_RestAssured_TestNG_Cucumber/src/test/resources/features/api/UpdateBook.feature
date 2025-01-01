@@ -20,10 +20,10 @@ Feature: Update a Book in the Library
 
   Scenario: Update only the author of a book
     Given the admin user is authenticated with username "admin" and password "password"
-    And a book exists in the database with ID 1
-    When I send a PUT request to "/books/1" with updated details:
-      | id | author       |
-      | 1  | Lois Lowry   |
+    And a book exists in the database with ID 2
+    When I send a PUT request to "/books/2" with updated details:
+      | id | title                   | author     |
+      | 2  | To Kill a Mockingbird   | Lois Lowry |
     Then I should receive a 200 response code for update
     And the response should confirm the author was updated
 

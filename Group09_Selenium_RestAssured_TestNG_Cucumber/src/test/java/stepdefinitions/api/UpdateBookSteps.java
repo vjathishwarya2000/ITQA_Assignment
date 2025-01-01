@@ -91,3 +91,4 @@ public class UpdateBookSteps {
         Assert.assertEquals(response.jsonPath().get("author"), requestBody.get("author"));
     }
 }
+
