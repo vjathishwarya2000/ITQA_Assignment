@@ -32,10 +32,12 @@ public class UIApplicationLogin {
         homePage.enterPassword(password);
     }
 
-    @And("I click the login button")
-    public void i_click_the_login_button() {
-        homePage.clickLoginButton();
+    @And("I click the login button for applications")
+    public void i_click_the_login_button_for_applications() {
+        homePage.clickLogin();
     }
+
+
 
     @Then("I should see the dashboard with title {string}")
     public void i_should_see_the_dashboard_with_title(String expectedTitle) {

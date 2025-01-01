@@ -22,7 +22,7 @@ public class HomePage {
         iceHRM.enterPassword(password);
     }
 
-    public void clickLoginButton() {
+    public void clickLogin() {
         iceHRM.clickLogin();
     }
 }
