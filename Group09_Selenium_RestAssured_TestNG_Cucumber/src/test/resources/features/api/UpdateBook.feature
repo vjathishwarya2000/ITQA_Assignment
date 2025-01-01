@@ -1,4 +1,4 @@
-@api2
+@api3
 Feature: Update an Existing Book in the Library
 
   Scenario: Successfully update an existing book as an admin
