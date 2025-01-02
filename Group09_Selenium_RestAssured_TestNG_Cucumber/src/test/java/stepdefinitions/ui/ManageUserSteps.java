@@ -34,8 +34,8 @@ public class ManageUserSteps {
                 "maran@gmail.com",
                 "IceHrm Employee",
                 "Admin",
-                "English",
-                "[user] Documents => HR Forms"
+                "English"
+//                "[user] Documents => HR Forms"
         );
     }
 
@@ -76,5 +76,37 @@ public class ManageUserSteps {
     public void i_should_see_the_manage_users_screen() {
         // Add specific validation for the Manage Users screen if necessary
         System.out.println("Manage Users screen is displayed successfully.");
+    }
+
+    @When("I search for the user {string}")
+    public void i_search_for_the_user(String username) {
+        manageUserPage.searchUser(username);
+    }
+
+    @Then("I should see the user {string} in the search results")
+    public void i_should_see_the_user_in_the_search_results(String username) {
+        if (!manageUserPage.isUserInSearchResults(username)) {
+            throw new AssertionError("User " + username + " is not displayed in the search results!");
+        }
+        System.out.println("User " + username + " is displayed in the search results.");
+    }
+
+    @When("I delete the user {string}")
+    public void i_delete_the_user(String username) {
+        manageUserPage.deleteUser(username);
+    }
+
+    @Then("I search for the user {string} again")
+    public void i_search_for_the_user_again(String username) {
+        manageUserPage.searchUser(username);
+        System.out.println("Searched for user: " + username);
+    }
+
+    @Then("I should not see the user {string} in the search results")
+    public void i_should_not_see_the_user_in_the_search_results(String username) {
+        if (!manageUserPage.isNoDataDisplayed()) {
+            throw new AssertionError("The search result is not empty, indicating that the user might still exist!");
+        }
+        System.out.println("No data displayed as expected; the user does not exist.");
     }
 }
