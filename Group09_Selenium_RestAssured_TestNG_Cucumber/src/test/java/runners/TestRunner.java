@@ -9,8 +9,8 @@ import utils.TestDataCreator;
 
 @CucumberOptions(
         features = {"src/test/resources/features"},
-        glue = {"stepdefinitions.ui", "stepdefinitions.common"},
-        tags = "@api",
+        glue = {"stepdefinitions"},
+        tags = "@api1",
         plugin = {
                 "pretty", // For console output
                 "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm", // Allure plugin

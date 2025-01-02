@@ -1,4 +1,3 @@
-
 @api4
 Feature: Get Book By ID
   The feature verifies the ability to retrieve book details by ID under different conditions.
