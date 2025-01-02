@@ -1,4 +1,4 @@
-@feature
+@filter
 Feature: Manage Permissions
 
   Background:
