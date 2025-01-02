@@ -1,40 +1,31 @@
 package stepdefinitions;
 
+import io.cucumber.java.en.When;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import io.cucumber.java.en.*;
-import pages.IceHRMHomePage;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.WebDriverConfig;
 
-import java.io.IOException;
+import java.time.Duration;
 
 public class CommonSteps {
-    protected WebDriver driver;
-    protected IceHRMHomePage homePage;
+    private WebDriver driver;
 
-    @Given("I am on the login page for the company dashboard")
-    public void i_am_on_the_login_page_for_company_dashboard() throws IOException {
-        driver = WebDriverConfig.initializeDriver();
-        homePage = new IceHRMHomePage(driver);
-        homePage.openApplication();
+    public CommonSteps() {
+        this.driver = WebDriverConfig.getDriver();
     }
 
-    @When("I enter the admin username {string} and password {string}")
-    public void i_enter_the_admin_username_and_password(String username, String password) {
-        homePage.enterUname(username);
-        homePage.enterPassword(password);
-    }
+    @When("I navigate to the Document Types page")
+    public void i_navigate_to_the_document_types_page() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-    @And("I click the login button for company")
-    public void i_click_the_login_button_for_company() {
-        homePage.clickLogin();
-    }
+        // Navigate to Documents -> Document Types tab
+        WebElement documentsMenu = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(), 'Documents')]")));
+        documentsMenu.click();
 
-    @Then("I should be on the company dashboard")
-    public void i_should_be_on_the_company_dashboard() {
-        String actualUrl = driver.getCurrentUrl();
-        String expectedUrl = "https://icehrmpro.gamonoid.com/?g=admin&n=dashboard&m=admin_Admin";
-        if (!actualUrl.equals(expectedUrl)) {
-            throw new AssertionError("URL does not match! Expected: '" + expectedUrl + "', Found: '" + actualUrl + "'");
-        }
+        WebElement documentTypesTab = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(), 'Document Types')]")));
+        documentTypesTab.click();
     }
 }
