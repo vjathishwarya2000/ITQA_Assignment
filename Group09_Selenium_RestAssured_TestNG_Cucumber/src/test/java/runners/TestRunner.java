@@ -9,7 +9,7 @@ import utils.TestDataCreator;
 
 @CucumberOptions(
         features = {"src/test/resources/features"},
-        glue = {"stepdefinitions.ui", "stepdefinitions.common"},
+        glue = {"stepdefinitions"},
         tags = "@api",
         plugin = {
                 "pretty", // For console output

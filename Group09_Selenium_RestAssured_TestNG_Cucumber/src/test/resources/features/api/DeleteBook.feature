@@ -1,4 +1,4 @@
-@api3
+@api
 Feature: Delete a Book from the Library
 
   Scenario: Successfully delete a book without authorization
@@ -22,7 +22,7 @@ Feature: Delete a Book from the Library
     When I send a DELETE request to "/books/2" with:
       | id |
       | 2  |
-    Then I should receive a 200 delete response code
+    Then I should receive a 403 delete response code
 #    And the response should confirm the book was deleted
 
   Scenario: Delete a non-existent book as admin
