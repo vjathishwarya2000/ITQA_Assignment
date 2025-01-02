@@ -1,21 +1,17 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class Dashboard {
 
-    private IceHRMDashboard iceHRMDashboard;
+    private final WebDriver driver;
 
     public Dashboard(WebDriver driver) {
-        this.iceHRMDashboard = new IceHRMDashboard(driver);
+        this.driver = driver;
     }
 
-    public void verifyAdmin() {
-        String dashboardTitle = iceHRMDashboard.getDashboardTitle();
-        if (!dashboardTitle.equals("IceHrm")) {
-            throw new AssertionError("Dashboard title does not match! Expected: 'IceHrm', Found: '" + dashboardTitle + "'");
-        }
-        System.out.println("Dashboard title verified successfully: " + dashboardTitle);
+    public void clickManageUser() {
+        driver.findElement(By.id("usersLink")).click();
     }
-
 }
