@@ -1,9 +1,6 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -36,7 +33,7 @@ public class ManageUserPage {
     }
 
     // Fill the user form with the provided details
-    public void fillUserForm(String username, String email, String employee, String userLevel, String language, String defaultModule) {
+    public void fillUserForm(String username, String email, String employee, String userLevel, String language) {
         clearAndEnterText(By.id("username"), username);
         clearAndEnterText(By.id("email"), email);
 
@@ -44,7 +41,7 @@ public class ManageUserPage {
         selectDropdownOption("rc_select_0", employee); // Employee
         selectDropdownOption("rc_select_1", userLevel); // User Level
         selectDropdownOption("rc_select_3", language); // Language
-        selectDropdownOption("rc_select_4", defaultModule); // Default Module
+//        selectDropdownOption("rc_select_4", defaultModule); // Default Module
     }
 
     // Helper method to clear text by using the delete key and then enter text
@@ -96,6 +93,74 @@ public class ManageUserPage {
                 By.xpath("//td[contains(text(), '" + username + "')]")
         ));
         return newUser.isDisplayed();
+    }
+
+    // Delete a user
+    public void deleteUser(String username) {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            WebElement deleteButton = wait.until(ExpectedConditions.elementToBeClickable(
+                    By.xpath("//td[contains(text(), '" + username + "')]/following-sibling::td//span[contains(@class, 'ant-tag-volcano') and contains(text(), 'Delete')]")
+            ));
+
+            // Scroll into view
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", deleteButton);
+
+            // Click using JavaScript to handle obstruction
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", deleteButton);
+
+            // Handle modal confirmation
+            WebElement confirmDeleteButton = wait.until(ExpectedConditions.elementToBeClickable(
+                    By.xpath("//div[@class='modal-footer']//button[contains(text(), 'Delete')]")
+            ));
+            confirmDeleteButton.click();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new AssertionError("Failed to delete the user: " + username);
+        }
+    }
+
+    // Search for a user
+    public void searchUser(String username) {
+        WebElement searchBox = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".ant-input")));
+
+        // Focus on the search box
+        searchBox.click();
+
+        // Delete the existing text using the BACKSPACE key
+        String existingText = searchBox.getAttribute("value");
+        for (int i = 0; i < existingText.length(); i++) {
+            searchBox.sendKeys(Keys.BACK_SPACE);
+        }
+
+        // Enter the new username and initiate the search
+        searchBox.sendKeys(username);
+        searchBox.sendKeys(Keys.ENTER);
+    }
+
+    // Check if the user is present in the search results
+    public boolean isUserInSearchResults(String username) {
+        try {
+            WebElement userRow = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                    By.xpath("//td[contains(text(), '" + username + "')]")
+            ));
+            return userRow.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    // Check if the search results indicate "No data"
+    public boolean isNoDataDisplayed() {
+        try {
+            WebElement noDataElement = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                    By.xpath("//div[@class='ant-empty-description' and text()='No data']")
+            ));
+            return noDataElement.isDisplayed();
+        } catch (Exception e) {
+            return false; // "No data" not displayed
+        }
     }
 
     // Edit an existing user with new details

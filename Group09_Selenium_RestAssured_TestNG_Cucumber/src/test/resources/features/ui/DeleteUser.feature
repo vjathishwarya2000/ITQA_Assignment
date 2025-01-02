@@ -1,7 +1,7 @@
-@mu
-Feature: Manage Users in IceHRM
+@deleteUser
+Feature: Delete User in IceHRM
 
-  Scenario: Navigate to Manage User and add a new user
+  Background: Add a new user
     Given I open the IceHRM application
     When I enter "admin" as username
     And I enter "admin" as password
@@ -15,3 +15,10 @@ Feature: Manage Users in IceHRM
     And I click the 'Save' button
     And I click the OK button on the confirmation modal
     Then The new user should be displayed on the screen
+
+  Scenario: Delete the newly added user
+    When I search for the user "Maranmax"
+    Then I should see the user "Maranmax" in the search results
+    When I delete the user "Maranmax"
+    Then I search for the user "Maranmax" again
+    Then I should not see the user "Maranmax" in the search results
