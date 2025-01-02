@@ -10,7 +10,7 @@ public class Dashboard {
         this.iceHRMDashboard = new IceHRMDashboard(driver);
     }
 
-    public void verifyAdmin() {
+    public void verifyTitle() {
         String dashboardTitle = iceHRMDashboard.getDashboardTitle();
         if (!dashboardTitle.equals("IceHrm")) {
             throw new AssertionError("Dashboard title does not match! Expected: 'IceHrm', Found: '" + dashboardTitle + "'");

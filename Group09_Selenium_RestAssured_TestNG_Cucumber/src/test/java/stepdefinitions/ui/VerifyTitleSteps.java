@@ -1,7 +1,6 @@
 package stepdefinitions.ui;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import io.cucumber.java.en.*;
 import pages.Dashboard;
 import pages.HomePage;
@@ -10,7 +9,7 @@ import utils.WebDriverConfig;
 
 import java.io.IOException;
 
-public class UIApplicationLogin {
+public class VerifyTitleSteps {
     WebDriver driver;
     HomePage homePage;
     Dashboard dashboard;
@@ -37,12 +36,10 @@ public class UIApplicationLogin {
         homePage.clickLogin();
     }
 
-
-
     @Then("I should see the dashboard with title {string}")
     public void i_should_see_the_dashboard_with_title(String expectedTitle) {
         dashboard = new Dashboard(driver);
-        dashboard.verifyAdmin();
+        dashboard.verifyTitle();
         driver.quit();
     }
 }

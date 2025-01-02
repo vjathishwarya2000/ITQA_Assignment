@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 @api2
 Feature: Update a Book in the Library
-=======
-@api3
-Feature: Update an Existing Book in the Library
->>>>>>> master
 
   Scenario: Successfully update a book's title and author
     Given the admin user is authenticated with username "admin" and password "password"
