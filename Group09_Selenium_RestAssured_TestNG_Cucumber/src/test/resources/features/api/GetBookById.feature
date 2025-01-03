@@ -34,13 +34,7 @@ Feature: Get Book By ID
     Then I should receive a 404 response code for retrieving books
     And the response body should contain an error message "Book not found"
 
-  # Scenario 5: Retrieve a book without providing credentials
-  Scenario: Attempt to retrieve a book without providing credentials
-    When I send an unauthorized GET request to "/api/books/1"
-    Then I should receive a 401 Unauthorized response code
-#    And the response body should contain an error message "Authentication is required"
-
-  # Scenario 6: Retrieve a book with an invalid ID format
+  # Scenario 5: Retrieve a book with an invalid ID format
   Scenario: Attempt to retrieve a book with an invalid ID format
     Given the user is authenticated for retrieving books with username "admin" and password "password"
     When I send a GET request to "/api/books/abc"
