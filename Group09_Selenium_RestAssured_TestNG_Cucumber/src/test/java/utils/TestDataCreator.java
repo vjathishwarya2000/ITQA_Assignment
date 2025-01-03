@@ -7,16 +7,12 @@ import io.restassured.response.Response;
 public class TestDataCreator {
 
     public static void createInitialData() {
-        // File name for the JSON data
         String jsonFileName = "initialBookData.json";
 
         try {
-            // Use JsonUtils to read the JSON file
             JsonNode booksArray = JsonUtils.getJsonData(jsonFileName);
 
-            // Iterate over the books array
             for (JsonNode book : booksArray) {
-                // Post each book
                 Response response = RestAssured.given()
                         .auth()
                         .basic("admin", "password")
