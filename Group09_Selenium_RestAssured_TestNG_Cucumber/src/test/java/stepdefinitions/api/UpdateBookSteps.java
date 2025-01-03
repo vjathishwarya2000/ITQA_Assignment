@@ -4,6 +4,7 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.After;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.Assert;
@@ -18,6 +19,7 @@ public class UpdateBookSteps {
     private Map<String, Object> requestBody;
     private String username;
     private String password;
+    private Map<String, Object> originalBookState = new HashMap<>();
 
     @Given("the admin user is authenticated with username {string} and password {string}")
     public void the_admin_user_is_authenticated_with_username_and_password(String username, String password) {
@@ -35,6 +37,11 @@ public class UpdateBookSteps {
 
         if (response.getStatusCode() == 404) {
             Assert.fail("Book with ID " + id + " does not exist. Precondition failed.");
+        } else {
+            // Save the original book state for later restoration
+            originalBookState.put("id", id);
+            originalBookState.put("title", response.jsonPath().get("title"));
+            originalBookState.put("author", response.jsonPath().get("author"));
         }
     }
 
@@ -90,5 +97,27 @@ public class UpdateBookSteps {
         Assert.assertNotNull(response, "Response is null. Ensure the request was sent.");
         Assert.assertEquals(response.jsonPath().get("author"), requestBody.get("author"));
     }
-}
 
+    @After
+    public void restoreOriginalBookState() {
+        // After all tests, restore the original state of the book
+        if (originalBookState.isEmpty()) {
+            return; // No book was modified, skip cleanup
+        }
+
+        Map<String, Object> restoredBook = new HashMap<>();
+        restoredBook.put("id", originalBookState.get("id"));
+        restoredBook.put("title", originalBookState.get("title"));
+        restoredBook.put("author", originalBookState.get("author"));
+
+        RestAssured.given()
+                .auth()
+                .basic(username, password)
+                .header("Content-Type", "application/json")
+                .body(restoredBook)
+                .put(APIConfig.BASE_URI + "/books/" + originalBookState.get("id").toString());
+
+        // Clear the original state after restoration
+        originalBookState.clear();
+    }
+}

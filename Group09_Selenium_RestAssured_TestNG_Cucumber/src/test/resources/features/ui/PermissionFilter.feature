@@ -1,4 +1,4 @@
-@filter
+@filter @ui
 Feature: Manage Permissions
 
   Background:

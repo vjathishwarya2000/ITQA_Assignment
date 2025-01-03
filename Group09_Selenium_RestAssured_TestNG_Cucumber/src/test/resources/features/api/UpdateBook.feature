@@ -1,4 +1,4 @@
-@api2
+@update-book @api
 Feature: Update a Book in the Library
 
   Scenario: Successfully update a book's title and author

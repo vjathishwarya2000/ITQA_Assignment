@@ -1,4 +1,4 @@
-@manage
+@manage @ui
 Feature: Manage Employees
 
   Scenario: Logging in, navigating to the Manage Employees page, and searching for a name
