@@ -8,9 +8,9 @@ import utils.APIConfig;
 import utils.TestDataCreator;
 
 @CucumberOptions(
-        features = {"src/test/resources/features"}, // Path to your feature files
-        glue = {"stepdefinitions.api"}, // Path to API step definitions
-        tags = "@api", // Only run tests with @api tag
+        features = {"src/test/resources/features"},
+        glue = {"stepdefinitions.api"},
+        tags = "@api",
         plugin = {
                 "pretty",
                 "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
