@@ -33,11 +33,11 @@ Feature: Delete a Book from the Library
     Then I should receive a 404 delete response code
     And the response should confirm the book was not found
 
-  Scenario: Delete a non-existent book as user
-    Given the user is authenticated with username "user" and password "password" to delete a book
-    When I send a DELETE request to "/books/999" with:
-      | id   |
-      | 999  |
-    Then I should receive a 403 delete response code
-    And the response should confirm the lack of authorization
+  Scenario: Delete a book with invalid ID as admin
+    Given the user is authenticated with username "admin" and password "password" to delete a book
+    When I send a DELETE request to "/books/sk" with:
+      | id  |
+      | sk  |
+    Then I should receive a 400 delete response code
+#    And the response should confirm the lack of authorization
 
