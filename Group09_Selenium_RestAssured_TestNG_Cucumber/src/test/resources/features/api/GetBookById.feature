@@ -5,20 +5,20 @@ Feature: Get Book By ID
   # Scenario 1: Successfully retrieve a book with valid credentials
   Scenario: Successfully retrieve a book with valid credentials for admin
     Given the user is authenticated for retrieving books with username "admin" and password "password"
-    When I send a GET request to "/api/books/2"
+    When I send a GET request to "/api/books/6"
     Then I should receive a 200 response code for retrieving books
     And the response body should contain the book details:
-      | id | title                                    | author       |
-      | 2  | Harry Potter and the Philosopher's Stone | J.K. Rowling |
+      | id | title                         | author        |
+      | 6  | The Hunger Games              | Suzanne Collins |
 
       # Scenario 2: Successfully retrieve a book with valid credentials
   Scenario: Successfully retrieve a book with valid credentials for user
     Given the user is authenticated for retrieving books with username "user" and password "password"
-    When I send a GET request to "/api/books/2"
+    When I send a GET request to "/api/books/6"
     Then I should receive a 200 response code for retrieving books
     And the response body should contain the book details:
-      | id | title                                    | author       |
-      | 2  | Harry Potter and the Philosopher's Stone | J.K. Rowling |
+      | id | title                         | author        |
+      | 6  | The Hunger Games              | Suzanne Collins |
 
   # Scenario 3: Retrieve a book with a non-existent ID as admin
   Scenario: Attempt to retrieve a book with a non-existent ID as admin
