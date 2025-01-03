@@ -55,3 +55,25 @@ Feature: Add a New Book to the Library
     When I send a POST request to "/books" with an empty body
     Then I should receive a 400 response code
 #    And the response should contain an error message "Request body cannot be empty"
+
+Scenario: Successfully create a new book as a standard user
+    Given the user is authenticated with username "user" and password "password"
+    When I send a POST request to "/books" with:
+      | title                             | author              |
+      | 1984                              | George Orwell       |
+    Then I should receive a 201 response code
+    And the response should confirm the book was created
+
+  Scenario: Create book with missing title field
+    Given the user is authenticated with username "admin" and password "password"
+    When I send a POST request to "/books" with:
+      | title | author         |
+      |       | Leo Tolstoy    |
+    Then I should receive a 400 response code
+
+  Scenario: Create book with missing author field
+    Given the user is authenticated with username "admin" and password "password"
+    When I send a POST request to "/books" with:
+      | title                   | author |
+      | War and Peace           |        |
+    Then I should receive a 400 response code
