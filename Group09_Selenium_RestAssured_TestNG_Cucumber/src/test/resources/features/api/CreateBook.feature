@@ -1,4 +1,4 @@
-@api
+@create-book @api
 Feature: Add a New Book to the Library
 
   Scenario: Successfully create a new book as admin

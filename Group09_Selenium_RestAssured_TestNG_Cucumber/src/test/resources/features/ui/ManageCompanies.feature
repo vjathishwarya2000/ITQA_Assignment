@@ -1,4 +1,4 @@
-@ManageCompanies
+@ManageCompanies @ui
 Feature: Manage Companies
 
   Scenario: Logging in and adding a new company
