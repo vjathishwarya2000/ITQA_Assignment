@@ -1,7 +1,7 @@
 @title @ui
 Feature: See the dashboard title
 
-  Scenario: Successful login with valid credentials
+  Scenario: Successfully verify the title in the dashboard
     Given I open the IceHRM application
     When I enter "admin" as username
     And I enter "admin" as password

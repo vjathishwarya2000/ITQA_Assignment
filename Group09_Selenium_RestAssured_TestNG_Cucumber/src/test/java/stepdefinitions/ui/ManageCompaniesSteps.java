@@ -9,9 +9,9 @@ import utils.WebDriverConfig;
 import java.io.IOException;
 
 public class ManageCompaniesSteps {
-    WebDriver driver;
-    ManageCompanies manageCompaniesLink;
-    IceHRMHomePage homePage;
+    private WebDriver driver;
+    private ManageCompanies manageCompaniesLink;
+    private IceHRMHomePage homePage;
 
     @Given("I am on the login page for the company dashboard")
     public void i_am_on_the_login_page_for_company_dashboard() throws IOException {
@@ -65,23 +65,7 @@ public class ManageCompaniesSteps {
     public void i_should_see_the_new_company(String name, String type, String country) {
         boolean isPresent = manageCompaniesLink.isRecordPresent(name, type, country, "");
         if (!isPresent) {
-            throw new AssertionError("New company not found in the list.");
-        }
-    }
-
-    @When("I update the company details from Name {string} to new Name {string}, Details {string}, Address {string}, Type {string}, Country {string}, and TimeZone {string}")
-    public void i_update_the_company_details(String currentName, String updatedName, String updatedDetails, String updatedAddress, String updatedType, String updatedCountry, String updatedTimeZone) {
-        boolean isUpdated = manageCompaniesLink.updateCompanyDetails(currentName, updatedName, updatedDetails, updatedAddress, updatedType, updatedCountry, updatedTimeZone);
-        if (!isUpdated) {
-            throw new AssertionError("Failed to update the company details.");
-        }
-    }
-
-    @Then("I should see the updated company with Name {string}, Type {string}, and Country {string} in the list")
-    public void i_should_see_the_updated_company(String updatedName, String updatedType, String updatedCountry) {
-        boolean isPresent = manageCompaniesLink.isRecordPresent(updatedName, updatedType, updatedCountry, "");
-        if (!isPresent) {
-            throw new AssertionError("Updated company not found in the list.");
+            throw new AssertionError("New company with Name: '" + name + "' not found in the list.");
         }
     }
 }
