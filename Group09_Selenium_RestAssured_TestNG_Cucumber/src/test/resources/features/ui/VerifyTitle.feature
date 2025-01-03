@@ -1,5 +1,5 @@
 @title @ui
-Feature: Login to IceHRM
+Feature: See the dashboard title
 
   Scenario: Successful login with valid credentials
     Given I open the IceHRM application

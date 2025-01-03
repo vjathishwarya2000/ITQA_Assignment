@@ -1,4 +1,4 @@
-@copy
+@copy @ui
 Feature: Copy Company Document
   As an admin
   I want to copy a document from the document types list
