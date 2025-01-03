@@ -70,3 +70,8 @@ Feature: Add a New Book to the Library
       | title                   | author |
       | War and Peace           |        |
     Then I should receive a 400 response code
+
+  Scenario: Prevent creating a book with an empty request body
+    Given the user is authenticated with username "admin" and password "password"
+    When I send a POST request to "/books" with an empty body
+    Then I should receive a 400 response code

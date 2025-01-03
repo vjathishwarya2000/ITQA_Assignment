@@ -84,6 +84,16 @@ public class CreateBookSteps {
         }
     }
 
+    @When("I send a POST request to {string} with an empty body")
+    public void i_send_a_POST_request_to_with_an_empty_body(String endpoint) {
+        response = RestAssured.given()
+                .auth()
+                .basic(username, password)
+                .header("Content-Type", "application/json")
+                .body("") // Empty JSON body
+                .post(APIConfig.BASE_URI + endpoint);
+    }
+
     @Then("I should receive a {int} response code")
     public void i_should_receive_a_response_code(int expectedStatusCode) {
         Assert.assertEquals(response.getStatusCode(), expectedStatusCode);

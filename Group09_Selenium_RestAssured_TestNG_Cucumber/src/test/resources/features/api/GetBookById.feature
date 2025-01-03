@@ -41,4 +41,8 @@ Feature: Get Book By ID
     Then I should receive a 400 response code for retrieving books
 #    And the response body should contain an error message "Invalid ID format"
 
-
+# Scenario 6: Retrieve a book without providing credentials
+  Scenario: Attempt to retrieve a book without providing credentials
+    When I send an unauthorized GET request to "/api/books/1"
+    Then I should receive a 401 Unauthorized response code
+#    And the response body should contain an error message "Authentication is required"
