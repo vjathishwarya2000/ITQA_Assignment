@@ -42,5 +42,17 @@ public class GetAllBooksSteps {
         Assert.assertNotNull(response, "Response is null. Ensure the request was sent.");
         Assert.assertEquals(response.getStatusCode(), expectedStatusCode, "Unexpected response code!");
     }
+    @Then("I should get a {int} response code")
+    public void i_should_get_a_response_code(int expectedStatusCode) {
+        Assert.assertNotNull(response, "Response is null. Ensure the request was sent.");
+        Assert.assertEquals(response.getStatusCode(), expectedStatusCode, "Unexpected response code!");
+    }
+
+    @Then("the response should contain all books")
+    public void the_response_should_contain_all_books() {
+        Assert.assertNotNull(response, "Response is null. Ensure the request was sent.");
+        List<?> books = response.jsonPath().getList("$");
+        Assert.assertTrue(!books.isEmpty(), "Expected books in the response, but found none.");
+    }
 
 }
