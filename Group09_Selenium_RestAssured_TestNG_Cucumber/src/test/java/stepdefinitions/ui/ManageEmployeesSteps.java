@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.By;
 import io.cucumber.java.en.*;
-import pages.ManageEmployeesLink;
+import pages.ManageEmployeesPage;
 import pages.IceHRMHomePage;
 import utils.WebDriverConfig;
 
@@ -13,7 +13,7 @@ import java.io.IOException;
 
 public class ManageEmployeesSteps {
     WebDriver driver;
-    ManageEmployeesLink manageEmployeesLink;
+    ManageEmployeesPage manageEmployeesLink;
     IceHRMHomePage homePage;
 
     @Given("I am on the login page")
@@ -45,7 +45,7 @@ public class ManageEmployeesSteps {
 
     @When("I click on the Manage Employees link")
     public void i_click_on_the_manage_employees_link() {
-        manageEmployeesLink = new ManageEmployeesLink(driver);
+        manageEmployeesLink = new ManageEmployeesPage(driver);
         manageEmployeesLink.navigateToManageEmployees();
     }
 
