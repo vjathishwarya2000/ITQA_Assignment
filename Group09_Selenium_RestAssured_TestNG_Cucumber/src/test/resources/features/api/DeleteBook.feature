@@ -1,4 +1,4 @@
-@api
+@delete-book @api
 Feature: Delete a Book from the Library
 
   Scenario: Successfully delete a book without authorization

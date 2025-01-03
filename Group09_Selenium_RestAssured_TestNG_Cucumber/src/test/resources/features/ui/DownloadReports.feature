@@ -1,4 +1,4 @@
-@download_report
+@download_report @ui
 Feature: Download Reports
 
   Scenario: Generate and Download the Active Employee Report

@@ -1,4 +1,4 @@
-@title
+@title @ui
 Feature: Login to IceHRM
 
   Scenario: Successful login with valid credentials

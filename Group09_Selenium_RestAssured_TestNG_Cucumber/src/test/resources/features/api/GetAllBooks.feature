@@ -1,4 +1,4 @@
-@api1
+@get-all-books @api
 Feature: Fetching all books
 
   Scenario: Accessing getAllBooks API with invalid credentials
