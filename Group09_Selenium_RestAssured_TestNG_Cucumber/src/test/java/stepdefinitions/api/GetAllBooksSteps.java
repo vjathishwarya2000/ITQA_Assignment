@@ -8,7 +8,6 @@ import io.restassured.response.Response;
 import org.testng.Assert;
 import utils.APIConfig;
 
-import java.util.List;
 
 public class GetAllBooksSteps {
 

@@ -31,7 +31,7 @@ Feature: Update a Book in the Library
     Given the admin user is authenticated with username "admin" and password "password"
     And a book exists in the database with ID 1
     When I send a PUT request to "/books/1" with updated details:
-      | id | author       |
-      | 1  | Jane Austen  |
+      | id | author          |
+      | 1  | Nicholas Sparks |
     Then I should receive a 400 response code for update
     And the response should indicate "Mandatory fields are missing"
