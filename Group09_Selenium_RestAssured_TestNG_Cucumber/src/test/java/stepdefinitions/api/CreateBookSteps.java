@@ -31,31 +31,10 @@ public class CreateBookSteps {
 
     @Given("a book already exists with:")
     public void a_book_already_exists_with(DataTable dataTable) {
-        Map<String, String> bookDetails = dataTable.asMaps(String.class, String.class).get(0);
-        requestBody = new HashMap<>();
-
-        if (bookDetails.get("id") != null) {
-            try {
-                requestBody.put("id", Integer.parseInt(bookDetails.get("id")));
-            } catch (NumberFormatException e) {
-                requestBody.put("id", bookDetails.get("id"));
-            }
-        }
-        requestBody.put("title", bookDetails.get("title"));
-        requestBody.put("author", bookDetails.get("author"));
-
-        // Send a POST request to create the book first
-        response = RestAssured.given()
-                .auth()
-                .basic(username, password)
-                .header("Content-Type", "application/json")
-                .body(requestBody)
-                .post(APIConfig.BASE_URI + "/books");
-
-        if (response.getStatusCode() == 201 && response.jsonPath().get("id") != null) {
-            createdBookIds.add(response.jsonPath().getInt("id"));
-        }
+        // The book is already initialized in @BeforeClass setup.
+        // No need to create bookDetails again.
     }
+
 
     @When("I send a POST request to {string} with:")
     public void i_send_a_POST_request_to_with(String endpoint, DataTable dataTable) {
@@ -90,14 +69,13 @@ public class CreateBookSteps {
                 .auth()
                 .basic(username, password)
                 .header("Content-Type", "application/json")
-                .body("") // Empty JSON body
+                .body("")
                 .post(APIConfig.BASE_URI + endpoint);
     }
 
     @Then("I should receive a {int} response code")
     public void i_should_receive_a_response_code(int expectedStatusCode) {
         Assert.assertEquals(response.getStatusCode(), expectedStatusCode);
-        System.out.println("Response Body: " + response.getBody().asString());
     }
 
     @Then("the response should confirm the book was created")

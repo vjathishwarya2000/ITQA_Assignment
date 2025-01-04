@@ -19,7 +19,6 @@ import utils.TestDataCreator;
 public class APITestRunner extends AbstractTestNGCucumberTests {
         @BeforeClass
         public void setUp() {
-                System.out.println("Setting up API tests...");
                 APIConfig.configureRestAssured();
                 TestDataCreator.createInitialData();
         }
